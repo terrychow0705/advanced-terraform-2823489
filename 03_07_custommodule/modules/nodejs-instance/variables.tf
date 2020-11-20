@@ -1,6 +1,6 @@
 variable "ami_id" {
     description = "The ID of the NodeJS AMI to deploy"
-    default = "ami-6685a403"
+    default = "ami-0ce909bd32bfdc7ba"
 }
 
 variable instance_count {
