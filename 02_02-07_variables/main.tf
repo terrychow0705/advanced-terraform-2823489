@@ -6,7 +6,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
 variable "region" {
-  default = "us-east-2"
+  default = "ap-east-1"
 }
 
 variable "vpc_cidr" {
@@ -35,10 +35,10 @@ variable "environment_map" {
 variable "environment_instance_type" {
   type = map(string)
   default = {
-    "DEV" = "t2.micro",
-    "QA" = "t2.micro",
-    "STAGE" = "t2.micro",
-    "PROD" = "t2.micro"
+    "DEV" = "t3.micro",
+    "QA" = "t3.micro",
+    "STAGE" = "t3.micro",
+    "PROD" = "t3.micro"
   }
 }
 
@@ -46,19 +46,19 @@ variable "environment_instance_settings" {
   type = map(object({instance_type=string, monitoring=bool}))
   default = {
     "DEV" = {
-      instance_type = "t2.micro", 
+      instance_type = "t3.micro", 
       monitoring = false
     },
    "QA" = {
-      instance_type = "t2.micro", 
+      instance_type = "t3.micro", 
       monitoring = false
     },
     "STAGE" = {
-      instance_type = "t2.micro", 
+      instance_type = "t3.micro", 
       monitoring = false
     },
     "PROD" = {
-      instance_type = "t2.micro", 
+      instance_type = "t3.micro", 
       monitoring = true
     }
   }
@@ -182,4 +182,8 @@ data "aws_ami" "aws-linux" {
 # //////////////////////////////
 output "instance-dns" {
   value = aws_instance.nodejs1.public_dns
+}
+
+output "private-dns" {
+  value = aws_instance.nodejs1.private_dns
 }
